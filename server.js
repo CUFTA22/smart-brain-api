@@ -14,7 +14,7 @@ const knex = require('knex')({
     client: 'pg',
     connection: {
         connectionString: process.env.DATABASE_URL,
-        ssl: true,
+        ssl: true
     }
 });
 const register = require('./controllers/register')
@@ -23,9 +23,8 @@ const profile = require('./controllers/profile')
 const image = require('./controllers/image')
 
 const app = express()
-app.use(bodyParser.json())
 app.use(cors())
-
+app.use(bodyParser.json())
 
 
 //* Root ------------------------------------------------------------------------------------
