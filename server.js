@@ -7,9 +7,9 @@
 */
 
 const express = require('express')
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt-nodejs')
-const cors = require('cors')
 const knex = require('knex')({
     client: 'pg',
     connection: {
@@ -38,8 +38,6 @@ app.get('/', (req, res) => {
 
 
 app.post('/signin', signin.handleSignIn(knex, bcrypt))
-//! (req, res) => {} , This shit is called Dependency Injection
-//! Same shit as (req, res) => {signin.handleSignIn(req, res, knex, bcrypt)}
 
 
 //* Register ---------------------------------------------------------------------------------
