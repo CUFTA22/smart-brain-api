@@ -30,7 +30,7 @@ app.use(cors())
 
 
 app.get('/', (req, res) => {
-    res.send('workz')
+    res.send(knex.users)
 })
 
 
@@ -62,5 +62,5 @@ app.post('/imageUrl', (req, res) => {image.handleApiCall(req, res)})
 
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log('Issa runningn boi')
+    console.log('Running')
 })
