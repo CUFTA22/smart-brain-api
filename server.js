@@ -24,7 +24,11 @@ const image = require('./controllers/image')
 
 const app = express()
 app.use(bodyParser.json())
-app.use(cors())
+// app.use(cors())
+
+const corsOpt = {
+    origin: 'https://smart-brain556.herokuapp.com'
+}
 
 //* Root ------------------------------------------------------------------------------------
 
@@ -37,26 +41,26 @@ app.get('/', (req, res) => {
 //* Sign in ---------------------------------------------------------------------------------
 
 
-app.post('/signin', signin.handleSignIn(knex, bcrypt))
+app.post('/signin', cors(corsOpt), signin.handleSignIn(knex, bcrypt))
 
 
 //* Register ---------------------------------------------------------------------------------
 
 
-app.post('/register', (req, res) => {register.handleRegister(req, res, knex, bcrypt)})
+app.post('/register', cors(corsOpt), (req, res) => {register.handleRegister(req, res, knex, bcrypt)})
 
 
 //* profile/:userId --------------------------------------------------------------------------
 
 
-app.get('/profile/:id', (req, res) => {profile.handleProfileGet(req, res, knex)})
+app.get('/profile/:id', cors(corsOpt), (req, res) => {profile.handleProfileGet(req, res, knex)})
 
 
 //* Image ------------------------------------------------------------------------------------
 
 
-app.put('/image', (req, res) => {image.handleImage(req, res, knex)})
-app.post('/imageUrl', (req, res) => {image.handleApiCall(req, res)})
+app.put('/image', cors(corsOpt), (req, res) => {image.handleImage(req, res, knex)})
+app.post('/imageUrl', cors(corsOpt), (req, res) => {image.handleApiCall(req, res)})
 
 
 app.listen(process.env.PORT || 3000, () => {
