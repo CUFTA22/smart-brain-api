@@ -33,7 +33,7 @@ const corsOpt = {
 //* Root ------------------------------------------------------------------------------------
 
 
-app.get('/', (req, res) => {
+app.get('/', cors(corsOpt), (req, res) => {
     res.send(knex.users)
 })
 
